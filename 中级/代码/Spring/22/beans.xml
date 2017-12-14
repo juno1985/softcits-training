@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- spring使用反射方式调用无参数的构造器 -->
+	<bean id="bread" class="spring.Bread"></bean>
+	<!-- 使用init-method指定该Bean所有属性注入完后,自动执行init方法 -->
+	<bean id="person" class="spring.Person" destroy-method="destroy" scope="singleton">
+		<!-- 通过ref的指定将person为bread的变量赋值，spring会以反射方式调用setter方法 -->
+		<property name="bread" ref="bread"></property>
+	</bean>
+	
+	<!-- 设置id为date的bean,在程序中可以生成JDK java.util.Date的实例 -->
+	<bean id="date" class="java.util.Date"></bean>
+	
+</beans>

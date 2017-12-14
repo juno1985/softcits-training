@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- spring使用反射方式调用无参数的构造器 -->
+	<bean id="bread" class="spring.Bread"></bean>
+	<!-- c:构造器参数名-ref的形式进行构造注入 -->
+	<bean id="person" class="spring.Person" c:brd-ref="bread" />
+	
+	<!-- 设置id为date的bean,在程序中可以生成JDK java.util.Date的实例 -->
+	<bean id="date" class="java.util.Date"></bean>
+	
+</beans>

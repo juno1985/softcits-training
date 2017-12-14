@@ -1,0 +1,11 @@
+org\softcits\dao\UserMapper.class
+org\softcits\dto\UserDto.class
+org\softcits\controller\UserController.class
+org\softcits\service\GroupService.class
+org\softcits\service\UserService.class
+org\softcits\common\JsonUtils.class
+org\softcits\model\User.class
+org\softcits\model\UserException.class
+org\softcits\model\Group.class
+org\softcits\dto\AjaxObj.class
+org\softcits\dao\GroupMapper.class

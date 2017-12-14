@@ -1,0 +1,11 @@
+USE test;
+
+DROP TABLE online_inf;
+
+CREATE TABLE online_inf(
+	sessionId VARCHAR(50),
+	uname VARCHAR(10),
+	ip VARCHAR(20),
+	page VARCHAR(100),
+	mills BIGINT 
+)

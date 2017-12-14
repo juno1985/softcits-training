@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.softcits.dao.UserMapperPlus">
+	<resultMap type="org.softcits.model.User" id="userDemo">
+		<!-- id定义主键会有优化 column指定那一列 property制定对应javabean的属性 -->
+		<id column="id" property="id" />
+		<result column="user_name" property="username" />
+		<result column="password" property="password" />
+		<result column="phone" property="phone" />
+
+	</resultMap>
+	<!-- public User getUserByName(String name); -->
+	<select id="getUserByName" resultMap="userDemo">
+		select * from tbl_user
+		where user_name=#{name}
+	</select>
+
+
+	<resultMap type="org.softcits.model.User" id="userAndgroup">
+		<!-- id定义主键会有优化 column指定那一列 property制定对应javabean的属性 -->
+		<id column="u_id" property="id" />
+		<result column="u_user_name" property="username" />
+		<result column="u_password" property="password" />
+		<result column="u_phone" property="phone" />
+		<!-- User的group成员变量的id属性 -->
+		<result column="g_id" property="group.id" />
+		<result column="g_group_name" property="group.groupName" />
+	</resultMap>
+	<select id="getUserAndGroup" resultMap="userAndgroup">
+		select u.id u_id, u.user_name u_user_name, u.password u_password, u.phone u_phone, g.id g_id, g.group_name g_group_name
+		from tbl_user u, tbl_group g where u.g_id = g.id and u.user_name = #{username}
+	</select>
+</mapper>

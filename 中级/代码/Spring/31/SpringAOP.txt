@@ -1,0 +1,7 @@
+Spring AOP
+1.引入第三方AspectJ的依赖
+2.在beans.xml中开启aspectJ，加入如下
+	<aop:aspectj-autoproxy/>
+3.在beans.xml中引入aop的schema
+4.声明一个Aspect类，在beans.xml中生成其对象
+5.定义相应的切面方法

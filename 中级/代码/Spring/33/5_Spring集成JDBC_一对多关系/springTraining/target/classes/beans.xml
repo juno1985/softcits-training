@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+         				http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         				http://www.springframework.org/schema/aop
+         				http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 打开Spring的Annotation支持 -->
+   <context:annotation-config/>
+   <!-- 设定Spring 去哪些包中找Annotation -->
+   <context:component-scan base-package="org.softcits.spring"/>
+   <bean id="baseDao" class="org.softcits.spring.dao.BaseDao">
+   <!-- 使用Spring的构造注入 -->
+   		<constructor-arg index="0" value="com.mysql.jdbc.Driver" />
+   		<constructor-arg index="1" value="jdbc:mysql://localhost:3306/test" />
+   		<constructor-arg index="2" value="root" />
+   		<constructor-arg index="3" value="123456" />
+   </bean>
+   <!-- 创建数据源 -->
+   <bean id="dataSource" 
+        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+	    <property name="url" value="${jdbc.url}"/>
+	    <property name="username" value="${jdbc.username}"/>
+	    <property name="password" value="${jdbc.password}"/>
+	</bean>
+	<!-- 导入Src目录下的jdbc.properties文件 -->
+	<context:property-placeholder location="jdbc.properties"/>
+</beans>

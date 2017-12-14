@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 配置工厂bean,该bean负责产生其他bean实例 -->
+	<bean id="beingFactory" class="app.factory.BeingFactory" />
+	
+	<!-- 使用实例工厂就会每次生成一个工厂实例,然后以反射形式执行 BeingFactory bf = container.get("beingFactory"); Dog dog = pf.getBeing("dog") -->
+	<bean id="dog" factory-bean="beingFactory"
+		factory-method="getBeing">
+		<!-- 配置静态工厂方法的参数 -->
+		<constructor-arg value="dog"/>
+		<!-- 驱动Spring以"我是狗"为参数来执行dog的setMsg()方法 -->
+		<property name="msg" value="我是狗"/>
+	</bean>
+	
+	<bean id="cat" factory-bean="beingFactory"
+		factory-method="getBeing">
+		<!-- 配置静态工厂方法的参数 -->
+		<constructor-arg value="cat"/>
+		<!-- 驱动Spring以"我是猫"为参数来执行dog的setMsg()方法 -->
+		<property name="msg" value="我是猫"/>
+	</bean>
+	
+</beans>

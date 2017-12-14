@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.softcits.dao.GroupMapper">
+
+	<resultMap type="org.softcits.model.Group" id="groupAndusers">
+		<id column="g_id" property="id" />
+		<result column="g_group_name" property="groupName" />
+		
+		<!-- collection定义集合类型的属性封装 -->
+		<collection property="users" ofType="org.softcits.model.User">
+			<!-- 定义这个集合中元素的封装规则 -->
+			<id column="u_id" property="id" />
+			<result column="u_user_name" property="username" />
+			<result column="u_password" property="password" />
+			<result column="u_phone" property="phone" />
+		</collection>
+	</resultMap>
+
+	<!-- public class Group { 
+			private int id; 
+			private String groupName; 
+			private List<User> users; -->
+
+	<select id="getUsersByGroup" resultMap="groupAndusers">
+		SELECT u.id u_id, u.user_name u_user_name, u.password
+		u_password,u.phone u_phone,
+		g.id g_id, g.group_name g_group_name
+		FROM tbl_group g
+		left join tbl_user u on u.g_id = g.id
+		where g.id=#{id}
+	</select>
+	
+	<!-- getGroup -->
+	<select id="getGroup" resultType="org.softcits.model.Group">
+		select id, group_name groupName from tbl_group where id = #{id}
+	</select>
+
+</mapper>

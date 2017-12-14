@@ -1,0 +1,16 @@
+USE test;
+CREATE TABLE t_user(
+id INT(11),
+username VARCHAR(255),
+passwd VARCHAR(255),
+PRIMARY KEY (id)
+)
+
+create table t_group(
+id int(11),
+grpname varchar(255),
+primary key (id)
+)
+
+ALTER TABLE t_user ADD gid INT(11);
+ALTER TABLE t_user ADD CONSTRAINT FK_ID FOREIGN KEY(gid) REFERENCES t_group(id);

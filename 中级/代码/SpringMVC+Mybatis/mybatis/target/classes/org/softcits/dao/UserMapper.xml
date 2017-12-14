@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.softcits.dao.UserMapper">
+	<resultMap type="org.softcits.model.User" id="userAndGroup">
+		<id column="id" property="id" />
+		<result column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="phone" property="phone"/>
+		<result column="piclink" property="piclink"/>
+		<result column="gid" property="group.id"/>
+		<result column="gname" property="group.groupname" />
+	</resultMap>
+	
+	<!-- namespace:名称空间;指定为接口的全类名 id：唯一标识并和接口函数名一致 resultType：返回值类型 #{username}：从传递过来的参数中取值 
+		UserMapper 接口如下定义 public User getUserByUsername(String username); -->
+	<select id="getUserByUsername" parameterType="org.softcits.model.User"
+		resultType="org.softcits.model.User">
+		<!-- 数据库字段名如何model属性名不一样,可以如下起别名使其统一 -->
+		select id, user_name username, pass_word password, phone from tbl_user
+		where user_name=#{username}
+	</select>
+
+	<!-- public User getUserByName(String name); -->
+	<!-- parameterType="java.lang.String" -->
+	<select id="getUserByName" resultMap="userAndGroup">
+		select u.id id, user_name username, pass_word password, phone, piclink, g.id gid, g.group_name gname from 
+		tbl_user u, tbl_group g
+		where user_name=#{name} and u.g_id = g.id
+	</select>
+
+	<!-- public void addUser(User user); -->
+	<insert id="addUser" parameterType="org.softcits.model.User" >
+		INSERT INTO
+		tbl_user(user_name, pass_word, phone, piclink, g_id)
+		VALUES (#{username}, #{password},#{phone}, #{piclink}, #{group.id})
+	</insert>
+
+	<!-- public void deleteUser(String name); -->
+	<delete id="deleteUser">
+		delete from tbl_user where user_name = #{name}
+	</delete>
+
+	<!-- public List<User> getAllUsers(); -->
+	<select id="getAllUsers" resultMap="userAndGroup">
+		select u.id id, user_name username, pass_word password, phone, piclink, g.id gid, g.group_name gname from 
+		tbl_user u, tbl_group g
+		where u.g_id = g.id
+	</select>
+
+	<!-- public void updateUser(User user); -->
+	<update id="updateUser">
+		UPDATE tbl_user
+		<set>
+			<if test="password != null">
+				pass_word=#{password},
+			</if>
+			<if test="phone != null">
+				phone=#{phone}
+			</if>
+		</set>
+		WHERE user_name=#{username}
+	</update>
+	
+	<!-- public List<User> getMutiUsers(List<Integer> ids); -->
+	<select id="getMutiUsers" resultType="org.softcits.model.User">
+		select id, user_name
+		username, pass_word password, phone
+		from tbl_user
+		where id in  
+		<foreach collection="list" item="id" separator=","
+		 open="(" close=")">
+			#{id}
+		</foreach>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

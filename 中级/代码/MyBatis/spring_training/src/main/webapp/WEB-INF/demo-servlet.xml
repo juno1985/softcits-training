@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- <bean name="/welcome" class="org.softcits.controller.WelcomeController" 
+		/> -->
+
+	<!-- 声明SpringMVC会去那些包中扫描annotation -->
+	<context:component-scan base-package="org.softcits.controller"
+		use-default-filters="false">
+		<!-- 只扫描控制器 -->
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!-- 开启SpringMVC的Annotation机制 -->
+	<mvc:annotation-driven />
+
+	<!-- 静态文件映射,否则一切静态文件的请求都会被web.xml中的servlet拦截 -->
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+</beans>

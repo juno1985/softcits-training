@@ -1,0 +1,16 @@
+D:\workspace\spring_training\src\main\java\org\softcits\dao\GroupMapper.java
+D:\workspace\spring_training\src\main\java\org\softcits\controller\UserController.java
+D:\workspace\spring_training\src\main\java\org\softcits\mbg\model\MbgGroupExample.java
+D:\workspace\spring_training\src\main\java\org\softcits\mbg\model\MbgGroup.java
+D:\workspace\spring_training\src\main\java\org\softcits\controller\WelcomeController.java
+D:\workspace\spring_training\src\main\java\org\softcits\mbg\model\MbgUserExample.java
+D:\workspace\spring_training\src\main\java\org\softcits\model\Pager.java
+D:\workspace\spring_training\src\main\java\org\softcits\mbg\model\MbgUser.java
+D:\workspace\spring_training\src\main\java\org\softcits\dao\DynamicSQLUser.java
+D:\workspace\spring_training\src\main\java\org\softcits\mbg\mapper\MbgUserMapper.java
+D:\workspace\spring_training\src\main\java\org\softcits\dao\UserMapper.java
+D:\workspace\spring_training\src\main\java\org\softcits\model\Group.java
+D:\workspace\spring_training\src\main\java\org\softcits\mbg\mapper\MbgGroupMapper.java
+D:\workspace\spring_training\src\main\java\org\softcits\service\UserService.java
+D:\workspace\spring_training\src\main\java\org\softcits\model\User.java
+D:\workspace\spring_training\src\main\java\org\softcits\dao\UserMapperPlus.java

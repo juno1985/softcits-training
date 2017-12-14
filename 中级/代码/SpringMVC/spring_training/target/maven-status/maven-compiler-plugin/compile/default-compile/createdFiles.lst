@@ -1,0 +1,3 @@
+org\softcits\controller\UserController.class
+org\softcits\controller\WelcomeController.class
+org\softcits\model\User.class

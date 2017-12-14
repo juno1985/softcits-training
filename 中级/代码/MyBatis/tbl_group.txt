@@ -1,0 +1,18 @@
+create table tbl_group(
+id int(11) primary key auto_increment,
+group_name varchar(255)
+) default charset=utf8
+
+INSERT INTO tbl_group(group_name) VALUES("教学部");
+INSERT INTO tbl_group(group_name) VALUES("招生部");
+INSERT INTO tbl_group(group_name) VALUES("宣传部");
+
+
+
+alter table tbl_user add column g_id int(11);
+alter table tbl_user add constraint fk_usr_grp foreign key(g_id) references tbl_group(id); 
+
+
+
+
+ALTER TABLE tbl_user ADD COLUMN piclink VARCHAR(255);

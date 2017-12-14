@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.softcits.dao.UserMapper">
+<!-- 
+namespace:名称空间;指定为接口的全类名
+id：唯一标识和接口函数名一致
+resultType：返回值类型
+#{username}：从传递过来的参数中取值
+
+public User getUserByUsername(String username);
+ -->
+	<select id="getUserByUsername" resultType="org.softcits.model.User">
+	<!-- 数据库字段名如何model属性名不一样,可以如下起别名使其统一 -->
+		select id, user_name username,password,phone from tbl_user where user_name=#{username}
+	</select>
+	
+	<!-- 	public void addUser(User user); -->
+	<insert id="addUser">
+		insert into tbl_user(user_name,password,phone)
+		values(#{username},#{password},#{phone})
+	</insert>
+	<!--  public void updateUser(User user);-->
+	<update id="updateUser">
+		update tbl_user set password=#{password}, phone=#{phone}
+		where user_name=#{username}
+	</update>
+	
+	<!-- public void deleteUser(User user) -->
+	<!-- 新版本中parameterType可以省略 -->
+	<delete id="deleteUser" parameterType="String">
+		delete from tbl_user where user_name=#{username}
+	</delete>
+	
+	<!-- public User getUserByUsernameAndId(String username, int id) -->
+	<select id="getUserByUsernameAndId" resultType="org.softcits.model.User">
+		select id, user_name username,password,phone from tbl_user 
+		<!-- public User getUserByUsernameAndId(String username, int id); -->
+		<!-- where user_name=#{param1} and id=#{param2} -->
+		
+<!-- 	public User getUserByUsernameAndId
+		(@Param(value="username")String username, @Param(value="id")int id); -->
+		 where user_name=#{username} and id=#{id}
+	</select>
+	<!-- public List<User> getAllUsers(); -->
+	<select id="getAllUsers" resultType="org.softcits.model.User">
+		select id, user_name username,password,phone from tbl_user
+	</select>
+	
+	<select id="getUserNum" resultType="java.lang.Long" >
+		SELECT COUNT(*) FROM tbl_user
+	</select>
+</mapper>

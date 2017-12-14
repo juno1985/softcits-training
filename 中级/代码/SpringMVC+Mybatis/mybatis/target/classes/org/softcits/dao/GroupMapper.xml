@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.softcits.dao.GroupMapper">
+	<!-- public List<Group> getAllGroups(); -->
+	<select id="getAllGroups" resultType="org.softcits.model.Group">
+		select id, group_name groupname from tbl_group
+	</select>
+	
+	<!-- public Group getGroupById(int id); -->
+	<select id="getGroupById" resultType="org.softcits.model.Group">
+		select id, group_name groupname from tbl_group where id = #{id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

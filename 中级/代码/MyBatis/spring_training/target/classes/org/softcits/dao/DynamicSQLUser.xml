@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.softcits.dao.DynamicSQLUser">
+	<!-- 查询员工，携带哪些属性就按那些属性查 -->
+	<!-- User u = new User(0, null, null, "0411%"); List<User> ulist = dsu.getUsersByIf(u); -->
+	<!-- public List<User> getUsersByIf(User user); -->
+	<select id="getUsersByIf" resultType="org.softcits.model.User">
+		select id, user_name username,password,phone
+		from tbl_user
+		<!-- 使用where标签解决'and'拼接问题,但是and必须放在每个if前面 -->
+		<where>
+			<!-- OGNL表达式 可以参照apache官方文档 -->
+			<!-- 从参数中取属性进行判断 -->
+			<if test="username!=null">
+				user_name=#{username}
+			</if>
+			<if test="phone!=null and phone!=''">
+				and phone like #{phone}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- public Long updateUser(User user); -->
+	<update id="updateUser">
+		update tbl_user
+		<set>
+			<if test="password!=null">password=#{password}, </if>
+			<if test="phone!=null">phone=#{phone}</if>
+		</set>
+		where user_name=#{username}
+	</update>
+	
+	
+	<sql id="getEmpls">select id, user_name username,password,phone from tbl_user where id in</sql>
+	
+	<!--public List<User> getEmpsByForeach(List<Integer> ids); -->
+	<select id="getEmpsByForeach" resultType="org.softcits.model.User">
+		<include refid="getEmpls"></include>
+		<!-- collection：指定要遍历的集合： 1. 如果传入的是单参数且参数类型是一个List的时候，collection属性值为list 
+			2. 如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array 3. 如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可 
+			item：将当前遍历出的元素赋值给指定的变量 separator:每个元素之间的分隔符 open：遍历出所有结果拼接一个开始的字符 close:遍历出所有结果拼接一个结束的字符 
+			index:索引。遍历list的时候是index就是索引，item就是当前值 遍历map的时候index表示的就是map的key，item就是map的值 
+			#{变量名}就能取出变量的值也就是当前遍历出的元素 -->
+		<foreach collection="ids" item="item_id" separator="," open="("
+			close=")">
+			#{item_id}
+		</foreach>
+		and user_name=#{uname}
+	</select>
+
+
+	<!-- public Long addBatchUsers(@Param("users")List<User> uList); -->
+	<insert id="addBatchUsers">
+		insert into tbl_user(user_name,password,phone,g_id)
+		values
+		<foreach collection="users" item="user" separator="," >
+			(#{user.username},#{user.password},#{user.phone},#{user.group.id})
+		</foreach>
+	</insert>
+</mapper>

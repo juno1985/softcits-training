@@ -1,0 +1,11 @@
+D:\workspace\mybatis\src\main\java\org\softcits\dao\GroupMapper.java
+D:\workspace\mybatis\src\main\java\org\softcits\service\UserService.java
+D:\workspace\mybatis\src\main\java\org\softcits\service\GroupService.java
+D:\workspace\mybatis\src\main\java\org\softcits\dto\UserDto.java
+D:\workspace\mybatis\src\main\java\org\softcits\common\JsonUtils.java
+D:\workspace\mybatis\src\main\java\org\softcits\controller\UserController.java
+D:\workspace\mybatis\src\main\java\org\softcits\model\UserException.java
+D:\workspace\mybatis\src\main\java\org\softcits\model\User.java
+D:\workspace\mybatis\src\main\java\org\softcits\dao\UserMapper.java
+D:\workspace\mybatis\src\main\java\org\softcits\dto\AjaxObj.java
+D:\workspace\mybatis\src\main\java\org\softcits\model\Group.java
