@@ -1,0 +1,12 @@
+
+public class Chinesetest {
+		 public static void main(String[] args){
+		 Chinese 毛泽东 = new Chinese();
+		 Chinese 邓小平= new Chinese();
+		 Chinese 周恩来 = new Chinese();
+		 System.out.println("毛泽东，邓小平，周恩来的初始国籍："+Chinese.n);
+		 Chinese.n="中华人民共和国";
+		 System.out.println("毛泽东，邓小平，周恩来修改后的国籍："+Chinese.n);
+		 }	 
+	 }
+

@@ -1,0 +1,26 @@
+
+public class CCalculator {
+	private int a,b,c;         
+	
+	public void set_value(int x, int y, int z)   
+	{		a=x;
+	        b=y;
+	        c=z;
+	}
+	public void show(){           
+		System.out.println("成员变量a的值为："+a);
+		System.out.println("成员变量b的值为："+b);
+		System.out.println("成员变量c的值为："+c); }
+	public int add()
+	{   return a+b+c;  }
+	
+	public int sub()
+	{   return a-b-c;    }
+	
+	public int mul()
+	{   return a*b*c;     }
+	
+	public double avg()
+	{   return (double)add()/3;   }       //强制类型转换，先把add转成double
+				
+}

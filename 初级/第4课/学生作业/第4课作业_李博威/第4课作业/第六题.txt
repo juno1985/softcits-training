@@ -1,0 +1,24 @@
+
+public class HondaCar extends autoProduction {
+
+	@Override
+	public void startEngine() {
+		System.out.println("start Honda engine!");
+
+	}
+
+	@Override
+	public void turnOffEngine() {
+		System.out.println("start Honda engine!");
+
+	}
+
+	@Override
+	public void alarm() {
+		System.out.println("start Honda engine!");
+
+	}
+
+}
+
+    //抽象类的子类： class--superclass找到父类

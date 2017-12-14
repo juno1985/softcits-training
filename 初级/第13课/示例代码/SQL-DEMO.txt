@@ -1,0 +1,84 @@
+--DDL
+
+--table creation
+create table demo( id int, price decimal, 
+	name varchar(255) default 'ss',date datetime);
+--table creation using subquery
+create table demo1 as select * from demo;
+--add column
+--add 1 column omitting brackets
+alter table demo add family_name varchar(255);
+--add multiple columns
+alter table demo add (id_emp int, id_mgr int);
+--alter column definition(name,data type)
+alter table demo change id_mgr name_mgr char(10);
+--delete column
+alter table demo drop name_mgr;
+--rename table
+alter table demo rename to employee;
+--delete table
+drop table demo1;
+
+---------------------------------------------------------------------------------------------
+--constraints
+--not null
+alter table employee modify id int(11) not null;
+--case1: single column:     [column name] unique
+
+--unique
+create table t2(id int not null, name varchar(255) unique);
+--case2: multiple columns:  constraint [constraint name] unique(column1, column2,  ...)
+create table t1 (id int not null, name varchar(255), address varchar(255),constraint con1 unique(name,address));
+
+--primary key with auto increment
+create table manager( id int auto_increment primary key, name varchar(255),address varchar(255));
+
+--foreign key 
+drop table employee;
+create table employee(id int auto_increment primary key,name varchar(255),mgr_id int,foreign key(mgr_id) references manager(id));
+--options: on delete cascade/on delete set null
+
+---------------------------------------------------------------------------------------------
+--DML
+
+
+--insert records
+--no column name specified
+insert into manager values(null, 'alex', 'Paris');
+--specify column name
+insert into manager(name) values('smith');
+--adding records to child table
+insert into employee values(null, 'kelly', 6);
+
+---------------------------------------------------------------------------------------------
+--update record
+update manager set name='john' where id = 2;
+
+---------------------------------------------------------------------------------------------
+--delete record
+delete from manager where id = 1;
+---------------------------------------------------------------------------------------------
+--select record
+--starting with 'ke'
+select name from employee where name like 'ke%';
+select name from employee where name not like 'ke%';
+--match the record which has 5 charactors
+select name from employee where name like '_____';
+
+--using group by
+select count(*) as num, address from manager group by address;
+--using having clause
+select count(*) as num, address from manager group by address having num > 1;
+
+--using right join
+select employee.name as emp_name, manager.name as mgr_name 
+	from employee right join manager on employee.id=manager.id;
+
+--union
+select id,name from manager union select id,name from employee;
+
+---------------------------------------------------------------------------------------------
+--subquery
+select mgr.id, mgr.name from(select * from manager) mgr;
+--select mgr.num, mgr.addr from (select count(*) as num, address as addr from manager group by addr) mgr where mgr.num > 1;
+--select mgr.id, mgr.address from manager mgr where mgr.id in (select count(*) as num from manager group by address);

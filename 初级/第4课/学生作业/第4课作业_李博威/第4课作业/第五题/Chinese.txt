@@ -1,0 +1,4 @@
+
+public class Chinese {
+	public static String n="中华民国";
+}

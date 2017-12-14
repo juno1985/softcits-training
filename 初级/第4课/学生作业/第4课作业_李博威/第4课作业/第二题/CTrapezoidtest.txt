@@ -1,0 +1,15 @@
+
+public class CTrapezoidtest {
+
+	public static void main(String[] args) {
+		CTrapezoid c; //= new CTrapezoid(4,9,5);   //声明对象   且     利用构造器创建对象   且  初始化
+		c=new CTrapezoid(4,9,5);
+		/*c.upper=4;
+		c.base=9;
+		c.height=5;    不重写构造器，就得一个个赋值，拓展性不好*/
+		c.show();
+		System.out.println("梯形面积是："+c.area());
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+
+public class CCalctest {
+
+	public static void main(String[] args) {
+    //用静态方法，无需创建对象，直接用类调用
+	System.out.println("三角形的面积为："+CCalc.area(2, 3));
+	System.out.println("圆的面积为："+CCalc.area(2));
+	System.out.println("梯形的面积为："+CCalc.area(2,3,4));
+	
+	
+	}
+}

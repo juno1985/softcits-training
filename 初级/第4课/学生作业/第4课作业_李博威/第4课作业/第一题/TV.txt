@@ -1,0 +1,22 @@
+
+public class TV {
+	 String brand;
+	 String madeof;
+	 int size;
+	 float price;
+   public TV(String brand,String madeof,int size,float price){
+	   this.brand=brand;            //把形参brand的值赋值给当前类的成员变量
+	   this.madeof=madeof;
+	   this.size=size;
+	   this.price=price;
+   }
+	void show()
+	{
+		System.out.print("品牌:"+brand+"\t");
+		System.out.print("产地:"+madeof+"\t");
+		System.out.print("尺寸:"+size+"\t");
+		System.out.println("价格:"+price+"\t");
+		if(price>10000)
+			System.out.println("我是土豪机");
+			                                        }
+               }

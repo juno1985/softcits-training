@@ -1,0 +1,20 @@
+
+public class CTrapezoid {
+	float upper;
+	float  base;
+	float  height;
+	
+    public float area(){
+        return  (((upper+base)*height)/2);
+    }
+    
+    public void show(){
+     System.out.println("上底："+upper);
+     System.out.println("下底："+base);
+     System.out.println("高："+height);    }
+    
+    public CTrapezoid(int upper,int base,int height)      //自定义构造器，给构造器写形参
+    {   this.upper=upper;                    //利用实参传递数值，给成员变量upper赋值
+        this.base=base;
+        this.height=height;}         //赋值内容和成员变量重名时，必须用this.
+}

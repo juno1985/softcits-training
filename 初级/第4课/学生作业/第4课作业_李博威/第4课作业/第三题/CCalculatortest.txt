@@ -1,0 +1,14 @@
+public class CCalculatortest {
+
+	public static void main(String[] args) {
+	  CCalculator CC = new CCalculator();
+	  
+	  CC.set_value(1, 2, 3);                     //要用对象来调用方法，在此（调用）设置成员变量的值
+	  CC.show();
+	  System.out.println("三个数的和为："+CC.add());         
+	  System.out.println("三个数的差为："+CC.sub());
+	  System.out.println("三个数的积为："+CC.mul());
+	  System.out.println("三个数的平均数为："+CC.avg());
+	}
+
+}

@@ -1,0 +1,10 @@
+李博威-会使用Math.PI
+	chinese中类对象使用汉语
+
+髓司甲-TV 10000正确
+
+杨家伟-第二题-会丢位
+		area=(double)(upper+base)*height/2;
+	第三题
+		avg=(double)add()/3;
+卢佳梅

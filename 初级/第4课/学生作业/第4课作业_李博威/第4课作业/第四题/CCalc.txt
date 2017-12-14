@@ -1,0 +1,13 @@
+
+public class CCalc {
+	
+	static double  area(int base,int height)
+	{ 	return (base*height)/2;   }
+	
+	static double area(int radius)
+	{ return Math.PI*radius*radius;  }      //java的PI调用方式
+	
+	static double area(int upper, int base, int height)
+	{    return ((upper+base)*height)/2;	 }
+}
+

@@ -1,0 +1,17 @@
+
+public class TVtext {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+      TV t1 = new TV("三星","韩国",60,12800);
+      TV t2 = new TV("小米","中国",70,9999);
+      TV t3 = new TV("海尔","中国",65,8888);
+      TV t4 = new TV("苹果","美国",60,16800);
+      
+      t1.show();
+      t2.show();
+      t3.show();
+      t4.show();
+	}
+
+}
