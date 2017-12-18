@@ -1,30 +1,50 @@
-package homework;
+package softcits_traning;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class Work3 {
+/*byte ï¼šjava.lang.Byte
+short ï¼šjava.lang.Short
+intï¼š java.lang.Integer
+long ï¼šjava.lang.Long
+float ï¼šjava.lang.Float
+double ï¼šjava.lang.Double
+char ï¼šjava.lang.Character
+booleanï¼š java.lang.Boolean*/
+
+public class Homework3 {
 
 	public static void main(String[] args) {
-		List<Character> listChar = new ArrayList<>();
-		Map<Character, Integer> resultMap = new HashMap<>();
-		char[] source = {'a','b','a','b','c','a','c','b','a','a','b'};
-		//Í¨¹ı±éÀúÊı×é´æÈëµ½List¼¯ºÏÖĞ
-		for(char c:source){
-			listChar.add(c);
-		}
-		//±éÀúlist¼¯ºÏ
-		for(char temp : listChar){
-			//Èç¹ûmapµÄkeyÖĞ²»º¬ÓĞ¸Ã×Ö·û£¬ÔòvalueÉèÎª1
-			if(!resultMap.containsKey(temp))
-				resultMap.put(temp, 1);
-			//Èç¹ûmapµÄkeyÖĞº¬ÓĞ¸Ã×Ö·û£¬Ôòvalue+1
-			else if(resultMap.containsKey(temp))
-				resultMap.put(temp, resultMap.get(temp) + 1);		
-		}
+
 		
+		List<Character> alp = new ArrayList<>();
+		alp.add('a');
+		alp.add('b');
+		alp.add('a');
+		alp.add('b');
+		alp.add('c');
+		alp.add('a');
+		alp.add('c');
+		alp.add('b');
+		alp.add('a');
+		alp.add('a');
+		alp.add('b');
+		
+		Map<Character, Integer> resultMap = new HashMap<>();
+		Iterator<Character> it = alp.iterator();
+		while(it.hasNext()){
+			Character c = it.next();
+			if(!resultMap.containsKey(c)){
+				resultMap.put(c, 1);
+			}else{
+				int num = resultMap.get(c);
+				num ++;
+				resultMap.put(c, num);
+			}
+		}
 		System.out.println(resultMap);
 	}
 
