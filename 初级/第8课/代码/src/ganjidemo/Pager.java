@@ -44,7 +44,7 @@ public class Pager<T> {
 		Integer count = 1;
 		for(int i = (pageNum -1)*3 ; count <= itemNum && i < plist.size(); i++){
 			//得到相应的元素
-			T bModel = (T) plist.get(i);
+			T bModel = plist.get(i);
 			//传递给中间结果集
 		/*	tempResult.add(bModel);*/
 			this.datas.add(bModel);
