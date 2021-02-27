@@ -81,3 +81,19 @@ mysql> select t.type_name, p.product_name, p.price, p.onboard_date
 --内联 inner join 等同于select两个表用where
 
 
+--group by/having
+mysql> select count(product_name) as 总数
+    -> from product_tbl
+    -> group by product_type_id
+    -> having count(product_name) > 3;
+
+
+--统计产品总数大于3的产品类型
+SELECT t.type_name, COUNT(p.product_type_id) AS total
+FROM product_type_tbl t, product_tbl p
+WHERE t.id=p.product_type_id
+GROUP BY p.product_type_id
+HAVING COUNT(p.product_type_id) > 3
+
+
+
