@@ -59,3 +59,8 @@ mysql> create table product_tbl(
     -> on delete cascade on update no action)engine=InnoDB default charset=utf8;
 
 
+--删除数据
+delete from product_tbl where id = 3;
+
+--更新数据
+update product_type_tbl set type_name="computer" where id = 1;
