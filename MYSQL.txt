@@ -64,3 +64,20 @@ delete from product_tbl where id = 3;
 
 --更新数据
 update product_type_tbl set type_name="computer" where id = 1;
+
+
+--跨表查询
+mysql> select p.product_name as 产品名称, p.price as 价格, p.onboard_date as 上市日期,t.type_name as 产品类别
+    -> from product_tbl p, product_type_tbl t
+    -> where p.product_type_id = t.id;
+
+
+--外联(左联，右联)
+mysql> select t.type_name, p.product_name, p.price, p.onboard_date
+    -> from product_type_tbl t
+    -> right join product_tbl p //left join
+    -> on t.id=p.product_type_id;
+
+--内联 inner join 等同于select两个表用where
+
+
