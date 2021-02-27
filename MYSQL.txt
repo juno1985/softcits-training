@@ -1,0 +1,61 @@
+--列出所有数据库 
+show database;
+--连接数据库
+use [db_name];
+--查看所有表
+show tables;
+--查看表的结构
+desc [table_name];
+--创建数据库
+create database sales charset utf8;
+--删除数据库
+drop database sales;
+--较完全的方式创建数据库
+create database if not exists sales default character set utf8 collate utf8_general_ci;
+--创建表
+mysql> create table product_type_tbl(
+    -> id int not null auto_increment,
+    -> type_name varchar(20) not null,
+    -> primary key(id)
+    -> )engine=InnoDB charset=utf8;
+
+
+--插入数据
+mysql> insert into product_type_tbl (type_name) values ("mobile");
+
+--查询数据
+mysql> select id, type_name from product_type_tbl;
+
+--条件查询
+mysql> select type_name from product_type_tbl where id = 1;
+
+--模糊查询 使用like关键字
+mysql> select id, type_name from product_type_tbl where type_name like "m%";
+
+
+--分页查询
+mysql> select id, type_name from product_type_tbl limit 2 offset 1;
+
+
+--排序查询
+mysql> select id, type_name from product_type_tbl order by id desc|asc;
+
+
+
+
+foreign key外键
+cascade方式 在父表上update/delete记录时，同步update/delete掉子表的匹配记录     
+set null方式 在父表上update/delete记录时，将子表上匹配记录的列设为null 要注意子表的外键列不能为not null      
+No action方式 如果子表中有匹配的记录,则不允许对父表对应候选键进行update/delete操作       
+
+mysql> create table product_tbl(
+    -> id int not null auto_increment,
+    -> product_name varchar(20) not null,
+    -> price decimal(10,2),
+    -> onboard_date date,
+    -> product_type_id int,
+    -> primary key(id),
+    -> constraint product_type_constraint foreign key(product_type_id) references product_type_tbl (id)
+    -> on delete cascade on update no action)engine=InnoDB default charset=utf8;
+
+
