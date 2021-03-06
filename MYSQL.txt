@@ -34,7 +34,7 @@ mysql> select id, type_name from product_type_tbl where type_name like "m%";
 
 
 --分页查询
-mysql> select id, type_name from product_type_tbl limit 2 offset 1;
+mysql> select id, type_name from product_type_tbl limit 1 offset 10;
 
 
 --排序查询
@@ -94,6 +94,80 @@ FROM product_type_tbl t, product_tbl p
 WHERE t.id=p.product_type_id
 GROUP BY p.product_type_id
 HAVING COUNT(p.product_type_id) > 3
+
+
+使用GROUP BY时，select能出现的字段：
+1. Group By的字段
+2. 使用了聚合函数的字段 MAX/MIN/SUM/AVG/COUNT
+
+--Alter改变表结构
+ALTER TABLE product_tbl ADD produce_city VARCHAR(20) DEFAULT NULL AFTER onboard_date;
+ALTER TABLE product_tbl MODIFY produce_city VARCHAR(10);
+
+--MySQL中对NULL的判断不是 where xx=null 而是where xx IS NULL;
+SELECT * FROM product_tbl WHERE produce_city IS NULL;
+SELECT * FROM product_tbl WHERE produce_city IS NOT NULL;
+
+--正则表达式
+SELECT * FROM product_tbl WHERE produce_city REGEXP '^N';
+SELECT * FROM product_tbl WHERE produce_city REGEXP 'n$';
+SELECT * FROM product_tbl WHERE produce_city REGEXP '^[ND]|g$';
+
+--查询建表SQL
+show create table product_tbl
+
+
+主键Primary Key自带两个约束
+1. 非空
+2. 唯一
+
+DDL和DML的区别
+--DDL
+create table 创建表    
+alter table  修改表   
+drop table 删除表   
+truncate table 删除表中所有行    
+create index 创建索引   
+drop index  删除索引 
+--DML
+insert 将记录插入到数据库 update 修改数据库的记录 delete 删除数据库的记录
+
+
+MySQL事务
+begin 开启事务
+a. commit 提交事务
+b. rollback 回滚事务
+
+
+RDBMS：关系型数据库的四大特性ACID
+A原子性：一个事务（transaction）中的所有操作，要么全部完成，要么全部不完成，
+	不会结束在中间某个环节。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，
+	就像这个事务从来没有执行过一样。
+
+C一致性：在事务开始之前和事务结束以后，数据库的完整性没有被破坏。
+	这表示写入的资料必须完全符合所有的预设规则，
+	这包含资料的精确度、串联性以及后续数据库可以自发性地完成预定的工作。
+
+I隔离性：数据库允许多个并发事务同时对其数据进行读写和修改的能力，
+	隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。
+	事务隔离分为不同级别，包括读未提交（Read uncommitted）、读提交（read committed）、
+	可重复读（repeatable read）和串行化（Serializable）。
+
+D持久性：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。
+
+
+
+
+MySQL锁：行级锁
+begin;
+select * from product_tbl where id = 14 for update;
+commit;
+
+
+
+
+
+
 
 
 
